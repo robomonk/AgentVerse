@@ -29,7 +29,9 @@ import {
 } from '@/components/ui/sidebar';
 
 function formatConversationHistory(messages: Message[]): string {
-  return messages.map(msg => `${msg.sender === 'user' ? 'User' : msg.sender}: ${msg.text}`).join('\n\n');
+  return messages.map(msg => `${msg.sender === 'user' ? 'User' : msg.sender}: ${msg.text}`).join('
+
+');
 }
 
 export default function Home() {
@@ -121,7 +123,7 @@ export default function Home() {
         sender: 'System',
         timestamp: new Date(),
       };
-      setMessages(prevMessages => [...prevMessages, errorMessage]);
+      setMessages(prevMessages => [...messages, errorMessage]);
     } finally {
       setIsLoading(false);
     }
@@ -131,9 +133,11 @@ export default function Home() {
     <SidebarProvider defaultOpen={true}>
       <Sidebar variant="sidebar" collapsible="icon" className="border-r">
         <SidebarHeader className="p-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2" legacyBehavior>
-            <BrainCircuit className="h-7 w-7 text-sidebar-primary" />
-            <span className="text-xl font-semibold text-sidebar-foreground font-headline">AgentVerse</span>
+          <Link href="/">
+            <div className="flex items-center gap-2">
+              <BrainCircuit className="h-7 w-7 text-sidebar-primary" />
+              <span className="text-xl font-semibold text-sidebar-foreground font-headline">AgentVerse</span>
+            </div>
           </Link>
         </SidebarHeader>
         <SidebarContent className="p-0">
@@ -145,7 +149,7 @@ export default function Home() {
           <SidebarGroup className="p-2">
             <SidebarMenu>
               <SidebarMenuItem>
-                 <Link href="/rules" legacyBehavior passHref>
+                 <Link href="/rules" passHref>
                     <SidebarMenuButton variant="ghost" className="w-full justify-start text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
                         <Settings className="h-4 w-4 mr-2" />
                         Agent Rules

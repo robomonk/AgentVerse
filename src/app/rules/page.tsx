@@ -59,7 +59,7 @@ export default function AgentRulesPage() {
     <div className="min-h-screen bg-background flex flex-col items-center py-8 px-4">
       <div className="w-full max-w-2xl">
         <Button variant="outline" asChild className="mb-6">
-          <Link href="/" legacyBehavior>
+          <Link href="/">
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Chat
           </Link>
