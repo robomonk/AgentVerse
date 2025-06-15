@@ -131,7 +131,7 @@ export default function Home() {
     <SidebarProvider defaultOpen={true}>
       <Sidebar variant="sidebar" collapsible="icon" className="border-r">
         <SidebarHeader className="p-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2" legacyBehavior>
             <BrainCircuit className="h-7 w-7 text-sidebar-primary" />
             <span className="text-xl font-semibold text-sidebar-foreground font-headline">AgentVerse</span>
           </Link>
