@@ -57,7 +57,7 @@ export default function Home() {
 
   const handleSendMessage = async (text: string) => {
     const userMessage: Message = {
-      id: Date.now().toString(),
+      id: crypto.randomUUID(),
       text,
       sender: 'user',
       timestamp: new Date(),
@@ -75,7 +75,7 @@ export default function Home() {
       setIsLoading(false);
       // Add a bot message indicating no active agents
       const noAgentBotMessage: Message = {
-        id: Date.now().toString() + '_system',
+        id: crypto.randomUUID(),
         text: "I can't respond as no agents are currently active. Please select an agent from the sidebar.",
         sender: 'System', // Or a generic bot name
         timestamp: new Date(),
@@ -102,7 +102,7 @@ export default function Home() {
       // Simulate agent response
       const agentResponseText = `Hello, I am ${selectedAgentName}. Based on the reasoning: "${reasoning}", I am responding to your query. (This is a simulated response.)`;
       const agentMessage: Message = {
-        id: Date.now().toString() + '_agent',
+        id: crypto.randomUUID(),
         text: agentResponseText,
         sender: selectedAgentName,
         timestamp: new Date(),
@@ -118,12 +118,12 @@ export default function Home() {
         variant: "destructive",
       });
        const errorMessage: Message = {
-        id: Date.now().toString() + '_error',
+        id: crypto.randomUUID(),
         text: "Sorry, I encountered an error trying to process your request.",
         sender: 'System',
         timestamp: new Date(),
       };
-      setMessages(prevMessages => [...messages, errorMessage]);
+      setMessages(prevMessages => [...prevMessages, errorMessage]);
     } finally {
       setIsLoading(false);
     }
