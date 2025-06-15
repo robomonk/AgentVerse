@@ -8,6 +8,7 @@ import { DEFAULT_AGENTS } from '@/lib/constants';
 import ChatMessage from '@/components/ChatMessage';
 import ChatInput from '@/components/ChatInput';
 import AgentConfigurationPanel from '@/components/AgentConfigurationPanel';
+import AgentAvatar from '@/components/AgentAvatar'; // Import added
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Button } from '@/components/ui/button';
 import { BrainCircuit, Settings, Loader2, Bot } from 'lucide-react';
@@ -29,9 +30,8 @@ import {
 } from '@/components/ui/sidebar';
 
 function formatConversationHistory(messages: Message[]): string {
-  return messages.map(msg => `${msg.sender === 'user' ? 'User' : msg.sender}: ${msg.text}`).join('
-
-');
+  // Corrected string literal to be on a single line with escaped newlines
+  return messages.map(msg => `${msg.sender === 'user' ? 'User' : msg.sender}: ${msg.text}`).join('\n\n');
 }
 
 export default function Home() {
@@ -150,7 +150,8 @@ export default function Home() {
             <SidebarMenu>
               <SidebarMenuItem>
                  <Link href="/rules" passHref>
-                    <SidebarMenuButton variant="ghost" className="w-full justify-start text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
+                    {/* Corrected variant from "ghost" to "default" */}
+                    <SidebarMenuButton variant="default" className="w-full justify-start text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
                         <Settings className="h-4 w-4 mr-2" />
                         Agent Rules
                     </SidebarMenuButton>
@@ -178,7 +179,8 @@ export default function Home() {
               {isLoading && (
                 <div className="flex justify-start mb-4">
                    <div className="flex items-end gap-2">
-                    <AgentAvatar agent={undefined} size="sm" /> {/* Generic Bot Avatar */}
+                    {/* AgentAvatar used here - import added above */}
+                    <AgentAvatar agent={undefined} size="sm" />
                     <div className="p-3 rounded-xl shadow-md bg-card text-card-foreground">
                         <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />
                     </div>
